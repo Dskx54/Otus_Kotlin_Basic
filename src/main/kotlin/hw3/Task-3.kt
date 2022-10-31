@@ -3,7 +3,8 @@ package hw3
 import java.util.*
 import kotlin.math.pow
 
-fun main(){
+fun main() {
+
     val input = Scanner(System.`in`)
     println("Input side A:")
     val aSide = input.nextInt()
@@ -11,29 +12,35 @@ fun main(){
     val bSide = input.nextInt()
     println("Input side C:")
     val cSide = input.nextInt()
-    if (aSide <= 0 || bSide <= 0 || cSide <= 0){
-        println("The sides of a triangle cannot be less than or equal to zero")
+
+    val sides = mutableListOf(
+        aSide,
+        bSide,
+        cSide
+    )
+
+    val bigSide = sides.max()
+    sides.remove(bigSide)
+    val kSide = sides[0]
+    val lSide = sides[1]
+
+
+
+
+    if ((aSide + bSide > cSide) && (aSide + cSide > bSide) && (bSide + cSide > aSide)) {
+
+        when {
+            bigSide.toFloat().pow(2) == kSide.toFloat().pow(2) + lSide.toFloat().pow(2)
+                .pow(2) -> println("The triangle is rectangular")
+
+            bigSide.toFloat().pow(2) < kSide.toFloat().pow(2) + lSide.toFloat().pow(2)
+                .pow(2) -> println("The triangle is acute - angled")
+
+            else -> println("The triangle is obtuse")
+        }
     }
-    else {
-        val sides = mutableListOf<Int>(
-            aSide,
-            bSide,
-            cSide
-        )
-        val bigSide = sides.max()
-        val bigSideSquare = bigSide.toDouble().pow(2.0)
-        sides.removeIf{it == bigSide}
-        val restSidesSumSquare = sides[0].toDouble().pow(2.0) + sides[1].toDouble().pow(2.0)
-        if (bigSideSquare > restSidesSumSquare){
-            println("The triangle is obtuse")
-        }
-        else if (bigSideSquare == restSidesSumSquare){
-            println("The triangle is rectangular")
-        }
-        else{
-            println("The triangle is acute - angled")
-        }
-
-
+    else{
+        println("The sides of the triangle are set incorrectly - " +
+                "the sum of the two sides must be less than the third side")
     }
 }
