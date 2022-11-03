@@ -2,13 +2,6 @@
 package hw3
 
 import java.util.*
-//enum class RomanNumerals{
-//    I,
-//    V,
-//    L,
-//    C
-//}
-
 fun main(){
 
 
