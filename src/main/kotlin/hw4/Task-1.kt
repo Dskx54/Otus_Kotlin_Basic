@@ -2,15 +2,16 @@ package hw4
 
 import java.util.*
 
-fun palindorm (number: Int): Boolean {
-    if (number.toString().first() == number.toString().last()){
-        println("true")
-        return true
-        palindorm(number.toString().substring(1, number.toString().length -1).toInt())
+fun palindrom (number: Int): Boolean {
+    return if (number.toString().length <= 2 && number.toString().first() == number.toString().last()){
+        true
+    }
+    else if (number.toString().first() == number.toString().last()){
+        val numbRec = number.toString().drop(1).dropLast(1)
+        palindrom(numbRec.toInt())
     }
     else{
-        println("false")
-        return false
+        false
     }
 }
 
@@ -18,7 +19,7 @@ fun main(){
     val input = Scanner(System.`in`)
     println("Enter a number: ")
     val number = input.nextInt()
-    palindorm(number)
+    println(palindrom(number))
 }
 
 

@@ -11,5 +11,5 @@ fun main(){
     val input = Scanner(System.`in`)
     println("Enter a number: ")
     val number = input.nextInt()
-    factorial(number)
+    println(factorial(number))
 }
